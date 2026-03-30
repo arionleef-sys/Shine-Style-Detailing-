@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shine Style Detailing | Mobile Car Detailing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #122030;
+    --navy-light: #1A2E45;
+    --blue: #3A8DDE;
+    --blue-light: #7EB8F5;
+    --white: #FFFFFF;
+    --gray: #A0AFBE;
+    --light-bg: #F4F7FB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(58,141,222,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--blue); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  nav ul a {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #2a7dce !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(58,141,222,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(58,141,222,0.06) 0%, transparent 60%);
+  }
+
+  /* Diagonal grid lines for texture */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(58,141,222,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58,141,222,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 8px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(72px, 14vw, 130px);
+    letter-spacing: 12px;
+    line-height: 0.9;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero h1 .style-word {
+    display: block;
+    font-weight: 300;
+    font-size: clamp(32px, 6vw, 56px);
+    letter-spacing: 20px;
+    color: var(--blue);
+    margin-top: 8px;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 2px;
+    background: var(--blue);
+    margin: 36px auto;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #2a7dce; transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(58,141,222,0.5);
+    color: var(--blue-light);
+    padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--white); transform: translateY(-2px); }
+
+  .hero-phone {
+    margin-top: 56px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.0s;
+  }
+  .hero-phone span {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: var(--gray);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  /* SERVICES */
+  .services {
+    background: var(--navy-mid);
+    padding: 100px 60px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 60px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--navy-light);
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--blue);
+    transition: height 0.3s ease;
+  }
+  .service-card:hover::before { height: 100%; }
+  .service-card:hover { background: #1e3550; }
+
+  .service-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(58,141,222,0.12);
+    line-height: 1;
+    margin-bottom: 16px;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-number { color: rgba(58,141,222,0.25); }
+
+  .service-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  .service-price {
+    margin-top: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--blue-light);
+  }
+  .service-price span {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+
+  /* WHY US */
+  .why {
+    padding: 100px 60px;
+    background: var(--navy);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 48px;
+    margin-top: 60px;
+  }
+
+  .why-item {
+    text-align: center;
+  }
+
+  .why-icon {
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(58,141,222,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 22px;
+  }
+
+  .why-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .why-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--navy-mid);
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  .contact-box {
+    max-width: 600px;
+    margin: 60px auto 0;
+    background: var(--navy-light);
+    padding: 60px 50px;
+    border: 1px solid rgba(58,141,222,0.15);
+    border-top: 3px solid var(--blue);
+  }
+
+  .contact-phone {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 44px;
+    letter-spacing: 6px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .contact-phone-label {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+
+  .contact-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(58,141,222,0.4);
+    margin: 36px auto;
+  }
+
+  .contact-detail {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 1px;
+    line-height: 2;
+  }
+
+  .contact-detail strong {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--blue-light);
+    letter-spacing: 2px;
+    font-size: 12px;
+    display: block;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080F18;
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(58,141,222,0.1);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--blue); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  .footer-area {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .services, .why, .contact, footer { padding: 70px 24px; }
+    .contact-box { padding: 40px 24px; }
+    .contact-phone { font-size: 32px; letter-spacing: 3px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">SHINE<span>.</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:6122835282" class="nav-cta">Call Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Minneapolis · Mobile Car Detailing</p>
+  <h1>
+    SHINE
+    <span class="style-word">STYLE</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Professional detailing — we come to you</p>
+  <div class="hero-buttons">
+    <a href="#contact" class="btn-primary">Book a Detail</a>
+    <a href="#services" class="btn-outline">View Services</a>
+  </div>
+  <div class="hero-phone">
+    <span>Call or Text</span>
+    612-283-5282
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">DETAILING SERVICES</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-number">01</div>
+        <div class="service-name">Exterior Wash & Shine</div>
+        <p class="service-desc">Full exterior hand wash, clay bar treatment, tire dressing, and windows cleaned to a streak-free finish.</p>
+        <div class="service-price">Starting at <span>/ $75</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number">02</div>
+        <div class="service-name">Interior Detail</div>
+        <p class="service-desc">Deep vacuum, steam clean, leather conditioning, dashboard and console wipe-down, and odor elimination.</p>
+        <div class="service-price">Starting at <span>/ $100</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number">03</div>
+        <div class="service-name">Full Detail</div>
+        <p class="service-desc">Complete interior and exterior detail. The works — your vehicle will look showroom fresh.</p>
+        <div class="service-price">Starting at <span>/ $175</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number">04</div>
+        <div class="service-name">Paint Correction</div>
+        <p class="service-desc">Remove swirl marks, light scratches, and oxidation. Restore your paint's clarity and gloss.</p>
+        <div class="service-price">Starting at <span>/ $250</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why">
+    <p class="section-label">Why Choose Us</p>
+    <h2 class="section-title">WE COME TO YOU</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Mobile Service</div>
+        <p class="why-desc">We bring everything needed right to your home, office, or anywhere in the Minneapolis area.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✦</div>
+        <div class="why-title">Pro Products</div>
+        <p class="why-desc">We use professional-grade detailing products that protect and enhance your vehicle's finish.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⏱</div>
+        <div class="why-title">Fast & Reliable</div>
+        <p class="why-desc">On time, every time. No waiting at a shop — we work around your schedule.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">★</div>
+        <div class="why-title">Satisfaction Guaranteed</div>
+        <p class="why-desc">We're not done until you're happy. Quality work on every single vehicle, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">BOOK YOUR DETAIL</h2>
+  <div class="contact-box">
+    <div class="contact-phone">612-283-5282</div>
+    <div class="contact-phone-label">Call or Text Anytime</div>
+    <a href="tel:6122835282" class="btn-primary" style="display:inline-block;">Call Now</a>
+    <div class="contact-divider"></div>
+    <div class="contact-detail">
+      <strong>Service Area</strong>
+      Minneapolis & Surrounding Areas
+      <strong>Hours</strong>
+      Monday – Saturday &nbsp;·&nbsp; 8am – 6pm
+      <strong>Booking</strong>
+      Call or text to schedule — fast response guaranteed
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SHINE<span>.</span>STYLE</div>
+  <div class="footer-copy">© 2025 Shine Style Detailing. All rights reserved.</div>
+  <div class="footer-area">Minneapolis, MN</div>
+</footer>
+
+</body>
+</html>
